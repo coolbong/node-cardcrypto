@@ -1,0 +1,25 @@
+{
+    "name": "node-cardcrypto",
+    "version": "0.0.1",
+    "description" : "node crypto module wrapper",
+    "main": "index.js",
+    "keywords": [
+        "crypto", "cryptogram", "cryptography",
+        "symmetric", "des", "aes",
+        "asymmetric", "rsa",
+        "hash", "md5", "sha",
+        "random",
+        "mac"
+    ],
+    "author" : {
+        "name": "coolbong",
+        "email": "coolbong.works@gmail.com"
+    },
+    "license" :{
+        "type" : "MIT"
+    },
+    "repository" : {
+        "type": "git",
+        "url": "http://github.com/coolbong/node-cardcrypto"
+    }
+}
