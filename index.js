@@ -22,6 +22,9 @@ var mac = require('./lib/mac');
 var bitwise = require('./lib/bitwise');
 
 
+//random
+var random = require('./lib/random');
+
 module.exports = {
     des: des,
     aes: aes,
@@ -29,5 +32,6 @@ module.exports = {
     padding: padding,
     hash: hash,
     mac: mac,
-    xor: bitwise.xor
+    xor: bitwise.xor,
+    random: random
 };
