@@ -10,6 +10,17 @@ var padding = require('../lib/padding');
 var assert = require('assert');
 
 exports.mac = {
+
+
+    'des mac algorithm 3' : function() {
+        var text = new Buffer('84820000105565124D57758ED6', 'hex');
+        var key = new Buffer('81511A453242319321F22FE2C4D206EC', 'hex');
+
+        var answer = new Buffer('1CAB9A384188C9B9', 'hex');
+        var result = mac.des_mac_algorithm3(key,  text);
+
+        assert(answer.toString('hex') == result.toString('hex'));
+    }
 /*
     'des mac': function () {
         //test 1
