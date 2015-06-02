@@ -1,6 +1,6 @@
 {
     "name": "node-cardcrypto",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description" : "node crypto module wrapper",
     "main": "index.js",
     "keywords": [
@@ -9,7 +9,7 @@
         "asymmetric", "rsa",
         "hash", "md5", "sha",
         "random",
-        "mac"
+        "mac", "iso9797"
     ],
     "author" : {
         "name": "coolbong",
