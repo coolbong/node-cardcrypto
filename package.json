@@ -6,7 +6,7 @@
     "keywords": [
         "crypto", "cryptogram", "cryptography",
         "symmetric", "des", "aes",
-        "asymmetric", "rsa", "publiKey", "privateKey"
+        "asymmetric", "rsa", "publiKey", "privateKey",
         "hash", "md5", "sha",
         "random",
         "mac", "iso9797"
