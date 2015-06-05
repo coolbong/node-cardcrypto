@@ -28,7 +28,6 @@ exports.rsa = {
 
         //step 4. result data format is equal to 0x02
         assert(result[1] == 0x02);
-
-    },
+    }
 
 };
