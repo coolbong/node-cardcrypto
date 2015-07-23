@@ -45,6 +45,16 @@ exports.hash = {
             assert(answer.toString('hex') == result.toString('hex'));
         },
         'sha256'  : function() {
+            message = new Buffer('', 'hex');
+            answer = new Buffer('E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855', 'hex');
+            result = hash.digest('sha256', message);
+            assert(answer.toString('hex') == result.toString('hex'));
+
+            message = new Buffer('61', 'hex');
+            answer = new Buffer('CA978112CA1BBDCAFAC231B39A23DC4DA786EFF8147C4E72B9807785AFEE48BB', 'hex');
+            result = hash.digest('sha256', message);
+            assert(answer.toString('hex') == result.toString('hex'));
+
             message = new Buffer('616263', 'hex');
             answer = new Buffer('BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD', 'hex');
             result = hash.digest('sha256', message);
