@@ -44,25 +44,24 @@ exports.des = {
         },
         'single block' : function() {
             var key = new Buffer('4041424344454647', 'hex');
-            var text = new Buffer('ABCDEFGH', 'ascii');
+            var plain = new Buffer('ABCDEFGH', 'ascii');
             var cipher = new Buffer('9DF73E6786F342CD', 'hex');
 
-            var result = des.ecb_encrypt(key, text);
+            var result = des.ecb_encrypt(key, plain);
             assert(result.toString('hex') == cipher.toString('hex'));
         },
         'multiple block' : function() {
             var key = new Buffer('4041424344454647', 'hex');
-            var text = new Buffer('ABCDEFGHabcdefgh', 'ascii');
+            var plain = new Buffer('ABCDEFGHabcdefgh', 'ascii');
             var cipher = new Buffer('9DF73E6786F342CDAC43F7565CCE42ED', 'hex');
 
-            var result = des.ecb_encrypt(key, text);
-            //console.log(result.toString('hex').toUpperCase());
+            var result = des.ecb_encrypt(key, plain);
             assert(result.toString('hex') == cipher.toString('hex'));
         }
     },
     'two key triple des ecb mode' : {
         'single block 1': function () {
-            plain = new Buffer('01A1D6D039776742', 'hex');
+            var plain = new Buffer('01A1D6D039776742', 'hex');
             cipher = plain;
             cipher = des.ecb_encrypt(deskey1, cipher);
             cipher = des.ecb_decrypt(deskey2, cipher);
@@ -78,8 +77,7 @@ exports.des = {
             var key = new Buffer('505152535455565758595A5B5C5D5E5F', 'hex');
             var key1 = new Buffer('5051525354555657', 'hex');
             var key2 = new Buffer('58595A5B5C5D5E5F', 'hex');
-            plain = new Buffer('20141027', 'ascii');
-            //console.log(plain.toString('hex'));
+            var plain = new Buffer('20141027', 'ascii');
             cipher = plain;
 
             cipher = des.ecb_encrypt(key1, cipher);
@@ -104,33 +102,97 @@ exports.des = {
         'multiple block: 2 block' : function() {
             var key = new Buffer('404142434445464748494A4B4C4D4E4F', 'hex');
             var text = new Buffer('0101005A000000000000000000000000', 'hex');
-            var cipher = new Buffer('6280A1DD2F7E930153F8C39D105381B0', 'hex');
+            var cipher = new Buffer('6280A1DD2F7E93018BAF473F2F8FD094', 'hex');
 
             var result = des.ecb_encrypt(key, text);
-            //assert(result.toString('hex') == cipher.toString('hex'));
+            assert(result.toString('hex') == cipher.toString('hex'));
         }
 
     },
-    'three key triple des ecb mode' : function() {
-        plain = new Buffer('01A1D6D039776742', 'hex');
-        cipher = plain;
-        cipher = des.ecb_encrypt(deskey1, cipher);
-        cipher = des.ecb_decrypt(deskey2, cipher);
-        cipher = des.ecb_encrypt(deskey3, cipher);
+    'three key triple des ecb mode' :  {
+        'single block 1': function() {
+            var plain = new Buffer('01A1D6D039776742', 'hex');
+            cipher = plain;
+            cipher = des.ecb_encrypt(deskey1, cipher);
+            cipher = des.ecb_decrypt(deskey2, cipher);
+            cipher = des.ecb_encrypt(deskey3, cipher);
 
-        result = des.ecb_encrypt(des3key, plain);
-        assert(result.toString('hex') ==  cipher.toString('hex'));
+            var result = des.ecb_encrypt(des3key, plain);
+            assert(result.toString('hex') == cipher.toString('hex'));
+        },
+        'single block 2' : function() {
+            var key = new Buffer('505152535455565758595A5B5C5D5E5F4041424344454647', 'hex');
+            var key1 = new Buffer('5051525354555657', 'hex');
+            var key2 = new Buffer('58595A5B5C5D5E5F', 'hex');
+            var key3 = new Buffer('4041424344454647', 'hex');
+            var plain = new Buffer('0102030405060708', 'hex');
+            //console.log(plain.toString('hex'));
+            cipher = plain;
+
+            cipher = des.ecb_encrypt(key1, cipher);
+            cipher = des.ecb_decrypt(key2, cipher);
+            cipher = des.ecb_encrypt(key3, cipher);
+
+            result = des.ecb_encrypt(key, plain);
+            assert(result.toString('hex') ==  cipher.toString('hex'));
+        },
+        'single block 3' : function() {
+            var key = new Buffer('404142434445464748494A4B4C4D4E4F5051525354555657', 'hex');
+            var text = new Buffer('01A1D6D039776742', 'hex');
+            var cipher = new Buffer('22AB55A538375963', 'hex');
+
+            var result = des.ecb_encrypt(key, text);
+            assert(result.toString('hex') == cipher.toString('hex'));
+            //console.log(result.toString('hex').toUpperCase());
+        },
+        'multiple block 1: 2 block' : function() {
+            var key = new Buffer('404142434445464748494A4B4C4D4E4F5051525354555657', 'hex');
+            var text = new Buffer('0101005A000000000000000000000000', 'hex');
+            var cipher = new Buffer('805619622A69C6F3B4692BCB67460309', 'hex');
+
+            var result = des.ecb_encrypt(key, text);
+            assert(result.toString('hex') == cipher.toString('hex'));
+            //console.log(result.toString('hex').toUpperCase());
+        }
+
     },
-    'single des cbc encrypt 1' : function() {
-        // Single DES CBC encrypt
-        plain = new Buffer('01A1D6D0397767423977674201A1D6D0', 'hex');
-        iv = new Buffer('59D9839733B8455D', 'hex');
 
-        cipher = new Buffer('3A5A2EEFE27ACE7B038F50F35BD7678E', 'hex');
+    'single des cbc encrypt' : {
+        'single block 1': function() {
 
-        result = des.cbc_encrypt(deskey1, plain, iv);
-        assert(result.toString('hex') == cipher.toString('hex'));
-    },
+        },
+        'single block 2': function () {
+            var key = new Buffer('4041424344454647', 'hex');
+            var text = new Buffer('ABCDEFGH', 'ascii');
+            var iv = new Buffer('0000000000000000', 'hex');
+
+            var cipher = new Buffer('9DF73E6786F342CD', 'hex');
+
+            var result = des.cbc_encrypt(key, text, iv);
+            assert(result.toString('hex') == cipher.toString('hex'));
+        },
+        'single block 3': function () {
+
+        },
+        'multiple block 1: 2 block' : function() {
+            var key = new Buffer('404142434445464748494A4B4C4D4E4F', 'hex');
+            var text = new Buffer('0101005A000000000000000000000000', 'hex');
+            var iv = new Buffer('0000000000000000', 'hex');
+            var cipher = new Buffer('6280A1DD2F7E930153F8C39D105381B0', 'hex');
+
+            var result = des.cbc_encrypt(key, text, iv);
+            assert(result.toString('hex') == cipher.toString('hex'));
+        },
+        'multiple block 2: 2 block' : function() {
+            var plain = new Buffer('01A1D6D0397767423977674201A1D6D0', 'hex');
+            var iv = new Buffer('59D9839733B8455D', 'hex');
+            var cipher = new Buffer('3A5A2EEFE27ACE7B038F50F35BD7678E', 'hex');
+
+            result = des.cbc_encrypt(deskey1, plain, iv);
+            assert(result.toString('hex') == cipher.toString('hex'));
+        }
+    }
+    ,
     'single des cbc encrypt 2' : function() {
         plain = new Buffer('00010203040506070809800000000000', 'hex');
 
@@ -167,6 +229,7 @@ exports.des = {
     'single des cbc decrypt': function() {
         plain = new Buffer('01A1D6D0397767423977674201A1D6D0', 'hex');
         iv = new Buffer('59D9839733B8455D', 'hex');
+
 
     }
 
