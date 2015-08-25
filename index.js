@@ -8,6 +8,8 @@ var aes = require('./lib/aes');
 var seed = require('./lib/seed');
 
 
+//asymmetric
+var rsa = require('./lib/rsa');
 
 //hash
 var hash = require('./lib/hash');
@@ -33,5 +35,6 @@ module.exports = {
     hash: hash,
     mac: mac,
     xor: bitwise.xor,
+    rsa: rsa,
     random: random
 };
