@@ -11,18 +11,22 @@
         "random",
         "mac", "iso9797"
     ],
+    "devDependencies": {
+        "mocha": "*"
+    },
     "author" : {
         "name": "coolbong",
         "email": "coolbong.works@gmail.com"
     },
-    "license" :{
-        "type" : "MIT"
-    },
+    "license" :"MIT",
     "repository" : {
         "type": "git",
         "url": "http://github.com/coolbong/node-cardcrypto"
     },
     "dependencies" : {
         "node-jsbnrsa": "git://github.com/coolbong/node-jsbnrsa.git"
+    },
+    "scripts": {
+        "test": "mocha -u exports ./test"
     }
 }
