@@ -4,7 +4,6 @@
 
 var mac = require('../lib/mac');
 var des = require('../lib/des');
-var xor = require('../lib/bitwise').xor;
 var padding = require('../lib/padding');
 
 var assert = require('assert');
@@ -13,14 +12,47 @@ exports.mac = {
 
 
     'des mac algorithm 3' : function() {
-        var text = new Buffer('84820000105565124D57758ED6', 'hex');
-        var key = new Buffer('81511A453242319321F22FE2C4D206EC', 'hex');
+        var text = '84820000105565124D57758ED6';
+        var key = '81511A453242319321F22FE2C4D206EC';
 
-        var answer = new Buffer('1CAB9A384188C9B9', 'hex');
+        var answer = '1CAB9A384188C9B9';
         var result = mac.des_mac_algorithm3(key,  text);
 
-        assert(answer.toString('hex') == result.toString('hex'));
+        assert(answer === result);
+    },
+    'des mac emv' : function() {
+        var text = '84DA00C50B 0002 F84327D38D6549AE 000008';
+        var key = '876C6B3D4211C448FB00485B5761995D';
+        var answer = 'B0AA8344E3B8018A';
+        var result = mac.des_mac_emv(key, text);
+
+        assert(answer === result);
+    },
+    'hmac' : function() {
+        var msg = new Buffer('The quick brown fox jumps over the lazy dog', 'ascii');
+        var key = new Buffer('key', 'ascii');
+        var result;
+
+        result = mac.hmac_sha1(key, msg);
+        assert(result === 'DE7C9B85B8B78AA6BC8A7A36F70A90701C9DB4D9');
+
+        result = mac.hmac_sha256(key, msg);
+        assert(result === 'F7BC83F430538424B13298E6AA6FB143EF4D59A14946175997479DBC2D1A3CD8');
+
+        result = mac.hmac_md5(key, msg);
+        assert(result === '80070713463E7749B90C2DC24911E275');
+    },
+
+    'hmac sha1' : function() {
+        var key;
+        var message;
+        message = '';
+        key = '';
+        var result = mac.hmac_sha1(key, message);
+        var answer = 'FBDB1D1B18AA6C08324B7D64B71FB76370690E1D';
+        assert(answer === result);
     }
+
 /*
     'des mac': function () {
         //test 1
@@ -54,35 +86,6 @@ exports.mac = {
         result = mac.des_mac(key, plain, null, 8);
         assert(result.toString('hex') == cipher.toString('hex'));
     },
-    ' Retail MAC': function () {
-
-        var plain = new Buffer('Hello World !!!!', 'ascii');
-        var iv = new Buffer('0000000000000000', 'hex');
-
-        var result = mac.des_mac_emv(des2key, plain);
-
-
-        var block1 = plain.slice(0, 8);
-        var block2 = plain.slice(plain.length - 8, plain.length);
-
-
-        var cipher = des.cbc_encrypt(deskey1, plain, iv);
-        cipher = xor(cipher, block2);
-        cipher = des.ecb_encrypt(des2key, cipher);
-        //FIXME check this assert mac api changed padding is default
-        //assert(result.toString('hex') == cipher.toString('hex'));
-
-        cipher = des.ecb_encrypt(deskey1, block1);
-        cipher = xor(cipher, block2);
-
-        cipher = des.ecb_encrypt(deskey1, cipher);
-        cipher = des.ecb_decrypt(deskey2, cipher);
-        cipher = des.ecb_encrypt(deskey1, cipher);
-
-        //FIXME check this assert mac api changed padding is default
-        //assert(result.toString('hex') == cipher.toString('hex'));
-
-    },
     'AES CMAC': function () {
         var key = new Buffer('2B7E151628AED2A6ABF7158809CF4F3C', 'hex');
         var plain = new Buffer('6BC1BEE22E409F96E93D7E117393172AAE2D8A571E03AC9C9EB76FAC45AF8E5130C81C46A35CE411', 'hex');
@@ -99,37 +102,6 @@ exports.mac = {
         result = mac.aes_cmac(key, plain);
 
         assert(result.toString('hex') == cipher.toString('hex'));
-    },
-    'hmac sha1' : function() {
-        var key;
-        var message = new Buffer('I love cupcakes', 'ascii');
-        key = new Buffer('abcdefg', 'ascii');
-        //message = new Buffer('', 'hex');
-        //key = new Buffer('', 'hex');
-        var result = crypto.hmac_sha1(key, message);
-        var answer = new Buffer('fbdb1d1b18aa6c08324b7d64b71fb76370690e1d', 'hex');
-        //console.log(result.toString('hex').toUpperCase());
-        //console.log(answer.toString('hex').toUpperCase());
-        //assert(answer.toString('hex') === result.toString('hex'));
-
-        message = new Buffer('Marry', 'ascii');
-        key = new Buffer('abcdefghijklmnopqrstuvwxyz', 'ascii');
-        result = crypto.hmac_sha1(key, message);
-        //console.log(result.toString('hex').toUpperCase())
-
-        message = new Buffer('0000000002D1A394','hex');
-        key = new Buffer('123400000100003251010B22F2BFF2','hex');
-        result = crypto.hmac_sha1(key, message);
-        //console.log(result.toString('hex').toUpperCase());
-
-        key = new Buffer('0000000002D1A394','hex');
-        message = new Buffer('123400000100003251010B22F2BFF2','hex');
-        result = crypto.hmac_sha1(key, message);
-        //console.log(result.toString('hex').toUpperCase());
-
-        //key:123400000100003251010B22F2BFF2
-        //text:0000000002D1A394
-        //result:7B975C79D3625022C978FADBACB7C5183CB83E1B
     }
 */
 };

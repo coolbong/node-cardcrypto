@@ -1,15 +1,16 @@
 {
     "name": "node-cardcrypto",
-    "version": "0.0.11",
+    "version": "1.0.0",
     "description" : "node crypto module wrapper",
     "main": "index.js",
     "keywords": [
         "crypto", "cryptogram", "cryptography",
-        "symmetric", "des", "aes",
-        "asymmetric", "rsa", "publiKey", "privateKey",
-        "hash", "md5", "sha",
+        "symmetric", "des", "aes", "seed",
+        "asymmetric", "rsa", "Public Key", "Private Key", "CRT",
+        "hash", "md5", "sha1", "sha256",
         "random",
-        "mac", "iso9797"
+        "mac", "DES MAC", "HMAC", "HMAC SHA1", "HMAC SHA256", "HMAC MD5",
+        "iso9797", "80 padding"
     ],
     "devDependencies": {
         "mocha": "*"
@@ -24,7 +25,7 @@
         "url": "http://github.com/coolbong/node-cardcrypto"
     },
     "dependencies" : {
-        "node-jsbnrsa": "git://github.com/coolbong/node-jsbnrsa.git"
+        "node-jsbnrsa" : "*"
     },
     "scripts": {
         "test": "mocha -u exports ./test"
