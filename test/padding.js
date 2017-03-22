@@ -35,5 +35,17 @@ exports.padding = {
         var result = padding.pkcs5_padding(input);
         var answer = 'CAFEBABECAFEBABE0808080808080808';
         assert.equal(result, answer);
-    }
+    },
+    'pkcs7_padding 01' : function() {
+        var input = 'CAFEBABECAFEBABE'; // 8 byte length
+        var result = padding.pkcs7_padding(input, 8);
+        var answer = 'CAFEBABECAFEBABE0808080808080808';
+        assert.equal(result, answer);
+    },
+    'pkcs7_padding 02' : function() {
+        var input = 'CAFEBABECAFE';
+        var result = padding.pkcs7_padding(input, 16);
+        var answer = 'CAFEBABECAFE0A0A0A0A0A0A0A0A0A0A';
+        assert.equal(result, answer);
+    },
 };

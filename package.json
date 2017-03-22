@@ -1,6 +1,6 @@
 {
     "name": "node-cardcrypto",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description" : "node crypto module wrapper",
     "main": "index.js",
     "keywords": [
@@ -10,7 +10,7 @@
         "hash", "md5", "sha1", "sha256",
         "random",
         "mac", "DES MAC", "HMAC", "HMAC SHA1", "HMAC SHA256", "HMAC MD5",
-        "iso9797", "80 padding", "PKCS#5 padding"
+        "iso9797", "80 padding", "PKCS#5 padding", "PKCS#7 padding"
     ],
     "devDependencies": {
         "mocha": "*"
