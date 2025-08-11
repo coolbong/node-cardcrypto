@@ -17,7 +17,7 @@ exports.rsa = {
 
         assert(answer === result);
 
-        result = new Buffer(result, 'hex');
+        result = Buffer.from(result, 'hex');
 
         //step 1. public key modulus and certificate have same length
         assert(m.length == text.length);

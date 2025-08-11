@@ -42,7 +42,7 @@ exports.des = {
         },
         'single block' : function() {
             var key = '4041424344454647';
-            var plain = new Buffer('ABCDEFGH', 'ascii');
+            var plain = Buffer.from('ABCDEFGH', 'ascii');
             plain = plain.toString('hex');
             var cipher = '9DF73E6786F342CD';
 
@@ -51,7 +51,7 @@ exports.des = {
         },
         'multiple block' : function() {
             var key = '4041424344454647';
-            var plain = new Buffer('ABCDEFGHabcdefgh', 'ascii');
+            var plain = Buffer.from('ABCDEFGHabcdefgh', 'ascii');
             plain = plain.toString('hex');
 
             var cipher = '9DF73E6786F342CDAC43F7565CCE42ED';
@@ -78,7 +78,7 @@ exports.des = {
             var key = '505152535455565758595A5B5C5D5E5F';
             var key1 = '5051525354555657';
             var key2 = '58595A5B5C5D5E5F';
-            var plain = new Buffer('20141027', 'ascii');
+            var plain = Buffer.from('20141027', 'ascii');
             plain = plain.toString('hex');
 
             cipher = plain;
@@ -163,7 +163,7 @@ exports.des = {
         },
         'single block 2': function () {
             var key = '4041424344454647';
-            var text = new Buffer('ABCDEFGH', 'ascii');
+            var text = Buffer.from('ABCDEFGH', 'ascii');
             text = text.toString('hex');
             var iv = '0000000000000000';
 
