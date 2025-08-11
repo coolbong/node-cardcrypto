@@ -29,8 +29,8 @@ exports.mac = {
         assert(answer === result);
     },
     'hmac' : function() {
-        var msg = new Buffer('The quick brown fox jumps over the lazy dog', 'ascii');
-        var key = new Buffer('key', 'ascii');
+        var msg = Buffer.from('The quick brown fox jumps over the lazy dog', 'ascii');
+        var key = Buffer.from('key', 'ascii');
         var result;
 
         result = mac.hmac_sha1(key, msg);

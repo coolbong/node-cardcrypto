@@ -33,7 +33,7 @@ exports.hash = {
             result = hash.digest('sha1', message);
             assert(answer === result);
 
-            message = new Buffer('Hello World', 'ascii');
+            message = Buffer.from('Hello World', 'ascii');
             answer = '0A4D55A8D778E5022FAB701977C5D840BBC486D0';
             result = hash.digest('sha1', message);
             assert(answer === result);
