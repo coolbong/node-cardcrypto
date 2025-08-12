@@ -1,6 +1,6 @@
 {
     "name": "node-cardcrypto",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description" : "node crypto module wrapper",
     "main": "index.js",
     "keywords": [
