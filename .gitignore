@@ -1,4 +1,7 @@
 node_modules/
-.git*
 .DS_Store
-.idea
+.idea/
+.nyc_output/
+coverage/
+*.log
+test_output.txt

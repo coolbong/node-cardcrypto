@@ -2,8 +2,8 @@
  * Created by coolbong on 2015. 5. 31..
  */
 
-var des  = require('../lib/des');
-var xor  = require('../lib/bitwise').xor;
+var des = require('../lib/des');
+var xor = require('../lib/bitwise').xor;
 var assert = require('assert');
 
 var key1 = '7CA110454A1A6E57';
@@ -21,26 +21,26 @@ var deskey2 = key2;
 var deskey3 = key3;
 
 var des2key = key1 + key2;
-var des3key = key1 + key2 +  key3;
+var des3key = key1 + key2 + key3;
 
 
 exports.des = {
-    'single des ecb mode' : {
-        'single DES ECB Encrypt' : function() {
+    'single des ecb mode': {
+        'single DES ECB Encrypt': function () {
             // Single DES ECB encrypt
             plain = '01A1D6D039776742';
             cipher = '690F5B0D9A26939B';
             result = des.ecb_encrypt(deskey1, plain);
             assert(result === cipher);
         },
-        'single DES ECB Decrypt' : function() {
+        'single DES ECB Decrypt': function () {
             // Single DES ECB decrypt
             plain = '01A1D6D039776742';
             result = des.ecb_decrypt(deskey1, cipher);
 
             assert(result === plain);
         },
-        'single block' : function() {
+        'single block': function () {
             var key = '4041424344454647';
             var plain = Buffer.from('ABCDEFGH', 'ascii');
             plain = plain.toString('hex');
@@ -49,7 +49,7 @@ exports.des = {
             var result = des.ecb_encrypt(key, plain);
             assert(result === cipher);
         },
-        'multiple block' : function() {
+        'multiple block': function () {
             var key = '4041424344454647';
             var plain = Buffer.from('ABCDEFGHabcdefgh', 'ascii');
             plain = plain.toString('hex');
@@ -60,7 +60,7 @@ exports.des = {
             assert(result === cipher);
         }
     },
-    'two key triple des ecb mode' : {
+    'two key triple des ecb mode': {
         'single block 1': function () {
             var plain = '01A1D6D039776742';
             cipher = plain;
@@ -74,7 +74,7 @@ exports.des = {
             cipher = 'B76FAB4FBDBDB767';
             assert(result === cipher);
         },
-        'single block 2' : function () {
+        'single block 2': function () {
             var key = '505152535455565758595A5B5C5D5E5F';
             var key1 = '5051525354555657';
             var key2 = '58595A5B5C5D5E5F';
@@ -94,7 +94,7 @@ exports.des = {
             cipher = '6281A3389E1204EA';
             assert(result === cipher);
         },
-        'single block 3' : function() {
+        'single block 3': function () {
             var key = '404142434445464748494A4B4C4D4E4F';
             var text = '01A1D6D039776742';
             var cipher = '245D11F97B8463ED';
@@ -102,9 +102,9 @@ exports.des = {
             var result = des.ecb_encrypt(key, text);
             assert(result === cipher);
         },
-        'multiple block: 2 block' : function() {
-            var key    = '404142434445464748494A4B4C4D4E4F';
-            var text   = '0101005A000000000000000000000000';
+        'multiple block: 2 block': function () {
+            var key = '404142434445464748494A4B4C4D4E4F';
+            var text = '0101005A000000000000000000000000';
             var cipher = '6280A1DD2F7E93018BAF473F2F8FD094';
 
             var result = des.ecb_encrypt(key, text);
@@ -112,8 +112,8 @@ exports.des = {
         }
 
     },
-    'three key triple des ecb mode' :  {
-        'single block 1': function() {
+    'three key triple des ecb mode': {
+        'single block 1': function () {
             var plain = '01A1D6D039776742';
             cipher = plain;
             cipher = des.ecb_encrypt(deskey1, cipher);
@@ -123,7 +123,7 @@ exports.des = {
             var result = des.ecb_encrypt(des3key, plain);
             assert(result === cipher);
         },
-        'single block 2' : function() {
+        'single block 2': function () {
             var key = '505152535455565758595A5B5C5D5E5F4041424344454647';
             var key1 = '5051525354555657';
             var key2 = '58595A5B5C5D5E5F';
@@ -138,7 +138,7 @@ exports.des = {
             result = des.ecb_encrypt(key, plain);
             assert(result === cipher);
         },
-        'single block 3' : function() {
+        'single block 3': function () {
             var key = '404142434445464748494A4B4C4D4E4F5051525354555657';
             var text = '01A1D6D039776742';
             var cipher = '22AB55A538375963';
@@ -146,7 +146,7 @@ exports.des = {
             var result = des.ecb_encrypt(key, text);
             assert(result === cipher);
         },
-        'multiple block 1: 2 block' : function() {
+        'multiple block 1: 2 block': function () {
             var key = '404142434445464748494A4B4C4D4E4F5051525354555657';
             var text = '0101005A000000000000000000000000';
             var cipher = '805619622A69C6F3B4692BCB67460309';
@@ -157,8 +157,8 @@ exports.des = {
 
     },
 
-    'single des cbc encrypt' : {
-        'single block 1': function() {
+    'single des cbc encrypt': {
+        'single block 1': function () {
 
         },
         'single block 2': function () {
@@ -175,7 +175,7 @@ exports.des = {
         'single block 3': function () {
 
         },
-        'multiple block 1: 2 block' : function() {
+        'multiple block 1: 2 block': function () {
             var key = '404142434445464748494A4B4C4D4E4F';
             var text = '0101005A000000000000000000000000';
             var iv = '0000000000000000';
@@ -185,7 +185,7 @@ exports.des = {
             assert(result === cipher);
         },
 
-        'multiple block 1: 2 block without iv' : function() {
+        'multiple block 1: 2 block without iv': function () {
             var key = '404142434445464748494A4B4C4D4E4F';
             var text = '0101005A000000000000000000000000';
             var cipher = '6280A1DD2F7E930153F8C39D105381B0';
@@ -193,7 +193,7 @@ exports.des = {
             var result = des.cbc_encrypt(key, text);
             assert(result === cipher);
         },
-        'multiple block 2: 2 block' : function() {
+        'multiple block 2: 2 block': function () {
             var plain = '01A1D6D0397767423977674201A1D6D0';
             var iv = '59D9839733B8455D';
             var cipher = '3A5A2EEFE27ACE7B038F50F35BD7678E';
@@ -203,8 +203,7 @@ exports.des = {
         }
     }
     ,
-    'single des cbc encrypt 2' : function() {
-        //plain = new Buffer('00010203040506070809800000000000', 'hex');
+    'single des cbc encrypt 2': function () {
         var plain = '00 00 00 00 00 00 00 00';
 
         var iv = '0000000000000000';
@@ -212,11 +211,10 @@ exports.des = {
         var cipher = '4FB92328C50AEAD3';
 
         result = des.cbc_encrypt(key1, plain, iv);
-        //console.log(result.toString('hex').toUpperCase());
 
         assert(result === cipher);
     },
-    'single des cbc encrypt 3' : function() {
+    'single des cbc encrypt 3': function () {
         // Single DES CBC encrypt
 
         var plain1 = '01A1D6D039776742';
@@ -244,7 +242,7 @@ exports.des = {
         result = des.cbc_decrypt(deskey1, cipher, iv);
         assert(result === plain);
     },
-    'single des cbc decrypt': function() {
+    'single des cbc decrypt': function () {
 
     }
 
