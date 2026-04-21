@@ -1,8 +1,32 @@
+# Dependency directories
 node_modules/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS metadata
 .DS_Store
+Thumbs.db
+
+# IDEs and editors
 .idea/
+.vscode/
+
+# Testing and coverage
 .nyc_output/
 coverage/
-*.log
-test_output.txt
 test/
+test_output.txt
+
+# Sensitive information
+keys/
+.env*
+
+# Configuration
+.github/
+.gitignore
+.npmignore
+package-lock.json
